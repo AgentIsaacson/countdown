@@ -12,6 +12,7 @@ export default class Picker extends Component {
 	}
 
 	handleChange(date) {
+        
 		this.setState({
 			startDate: date
 		});
