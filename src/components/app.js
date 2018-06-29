@@ -44,6 +44,22 @@ export default class App extends Component {
 		var timeBetween = today.getTime() - bday.getTime();
 		var daysOld = Math.floor(timeBetween / (1000 * 60 * 60 * 24));
 		var age = Number((daysOld / 365).toFixed(0));
+		if (birthMonth > currentMonth) {
+			var age = Number((daysOld / 365).toFixed(0));
+		} else if (birthMonth < currentMonth) {
+			var age = Number((daysOld / 365).toFixed(0))+1;
+		} else if (birthMonth == currentMonth) {
+			var currentDay = today.getDate();
+			var birthDay = bday.getDate();
+
+			if (birthDay > currentDay) {
+				var age = Number((daysOld / 365).toFixed(0));
+			}
+			else if (birthDay <= currentDay) {
+				var age = Number((daysOld / 365).toFixed(0))+1;
+			}
+		}
+		
 		this.setState({
 			age,
 			active: true
@@ -60,7 +76,7 @@ export default class App extends Component {
 			if (birthDay > currentDay) {
 				bday.setFullYear(today.getFullYear());
 			}
-			if (birthDay <= currentDay) {
+			else if (birthDay <= currentDay) {
 				bday.setFullYear(today.getFullYear() + 1);
 			}
 		}
